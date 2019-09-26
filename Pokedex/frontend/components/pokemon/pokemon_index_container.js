@@ -1,21 +1,23 @@
 import { connect } from 'react-redux';
-import PokemonIndex from './pokemon_index'
-import { selectAllPokemon } from '../../reducers/selectors'
+import PokemonIndex from './pokemon_index';
+import { selectAllPokemon } from '../../reducers/selectors';
+import { requestAllPokemon } from '../../actions/pokemon_actions';
 
 const msp = (state) => {
   const { pokemon } = state.entities;
   debugger
   return {
-    pokemon: Object.values(pokemon)
+    pokemon: selectAllPokemon(state)
+    // pokemon: Object.values(pokemon)
   };
 };
 
 const mdp = dispatch => {
   debugger
   return {
-    selectAllPokemon: (state) => {
+    requestAllPokemon: () => {
       debugger
-      return dispatch(selectAllPokemon(state));
+      return dispatch(requestAllPokemon());
     }
   };
 };
